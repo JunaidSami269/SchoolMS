@@ -5,7 +5,7 @@ const schema = new mongoose.Schema({
     id: mongoose.ObjectId,
     fname: {
         type: String,
-        required: true
+        required: "This field is required"
     },
     lname: {
         type: String
@@ -19,14 +19,8 @@ const schema = new mongoose.Schema({
     department: {
         type: String
     },
-    dateofjoin: {
-        type: Date
-    },
     mobile: {
         type: String
-    },
-    status: {
-        type: Boolean
     }
 });
 
