@@ -13,8 +13,12 @@ router.get("/", (req, res) => {
 })
 
 router.post("/", (req, res) => {
-    insertRecord(req, res)
-    //console.log(req.body);
+    if (req.body.id == "") {
+
+        insertRecord(req, res)
+    } else {
+        updateRecord(req, res);
+    }
 
 })
 
@@ -22,8 +26,8 @@ router.post("/", (req, res) => {
 function insertRecord(req, res) {
     let student = new Student();
 
-    student.fname = req.body.first_name;
-    student.lname = req.body.last_name;
+    student.fname = req.body.fname;
+    student.lname = req.body.lname;
     student.dob = req.body.dob;
     student.grade = req.body.grade;
     student.department = req.body.department;
@@ -31,22 +35,63 @@ function insertRecord(req, res) {
 
     student.save((err, doc) => {
         if (!err)
-        res.redirect('student/list');
-    else {
-        console.log(err);
-    }
+            res.redirect('student/list');
+        else {
+            console.log(err);
+        }
     })
 
 }
 
+//update student data
+function updateRecord(req, res) {
+    Student.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+        if (!err) { res.redirect('student/list'); }else{
+            console.log('Error during record update : ' + err)
+        }
+    });
+
+}
+
+//delete student
+router.get('/delete/:id', (req, res) => {
+    Student.findByIdAndRemove(req.params.id, (err, doc) => {
+        if (!err) {
+            res.redirect('/student/list');
+        }
+        else { console.log('Error in studentndelete :' + err); }
+    });
+});
+
 //list router
 router.get("/list", (req, res) => {
-    res.json("formlist")
+    Student.find((err, docs) => {
+        if (!err) {
+            res.render("students/list", {
+                list: docs
+            });
+        }
+        else {
+            console.log('Error in retrieving employee list :' + err);
+        }
+    }).lean();
 })
 
-router.get("/test", (req, res) => {
-    res.json("testing")
-})
+
+//update list router
+router.get("/:id", (req, res) => {
+    Student.findById(req.params.id, (err, doc) => {
+        if (!err) {
+            res.render("students/addOrEdit",
+                {
+                    viewTitle: "Update Record",
+                    student: doc
+
+                })
+        }
+    }).lean();
+});
+
 
 
 

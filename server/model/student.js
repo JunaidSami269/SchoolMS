@@ -5,13 +5,13 @@ const schema = new mongoose.Schema({
     id: mongoose.ObjectId,
     fname: {
         type: String,
-        required: "This field is required"
+        
     },
     lname: {
         type: String
     },
     dob: {
-        type: Date
+        type: String
     },
     grade: {
         type: String
@@ -19,6 +19,7 @@ const schema = new mongoose.Schema({
     department: {
         type: String
     },
+
     mobile: {
         type: String
     }

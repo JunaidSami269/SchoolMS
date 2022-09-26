@@ -2,25 +2,26 @@
 
 <form action="/student" method="post">
     <input type="hidden" name="_id" value="{{student._id}}">
+
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>First Name</label>
-            <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{studetnt.first_name}}">
+            <input type="text" class="form-control" name="fname" placeholder="First Name" value="{{student.fname}}">
         </div>
         <div class="form-group col-md-6">
-            <label>Last Name</label>
-            <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{studetnt.last_name}}">
+            <label>LastName</label>
+            <input type="text" class="form-control" name="lname" placeholder="Last Name" value="{{student.lname}}">
         </div>
-        
     </div>
+
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>DOB</label>
-            <input type="text" class="form-control" name="dob" placeholder="DOB" value="{{studetnt.dob}}">
+            <input type="date" class="form-control" name="dob" placeholder="DOB" value="{{student.dob}}">
         </div>
         <div class="form-group col-md-6">
             <label>Grade</label>
-            <input type="text" class="form-control" name="grade" placeholder="Grade" value="{{studetnt.grade}}">
+            <input type="text" class="form-control" name="grade" placeholder="Grade" value="{{student.grade}}">
         </div>
     </div>
     <div class="form-row">
@@ -36,6 +37,6 @@
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
-        <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> View All</a>
+        <a class="btn btn-secondary" href="/student/list"><i class="fa fa-list-alt"></i> View All</a>
     </div>
 </form>
