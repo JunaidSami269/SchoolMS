@@ -13,10 +13,11 @@ router.get("/", (req, res) => {
 })
 
 router.post("/", (req, res) => {
-    if (req.body.id == "") {
-
+    if (req.body._id == "") {
+       // console.log("insert");
         insertRecord(req, res)
     } else {
+       // console.log("update");
         updateRecord(req, res);
     }
 
@@ -72,7 +73,7 @@ router.get("/list", (req, res) => {
             });
         }
         else {
-            console.log('Error in retrieving employee list :' + err);
+            console.log('Error in retrieving Student list :' + err);
         }
     }).lean();
 })

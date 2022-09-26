@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
-
-    id: mongoose.ObjectId,
     fname: {
         type: String,
         
